@@ -1,0 +1,15 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="usuario">Usuario:</label>
+  <input id="usuario" formControlName="usuario" />
+  <div *ngIf="loginForm.get('usuario')?.invalid && loginForm.get('usuario')?.touched">
+    <p>Usuario no válido</p>
+  </div>
+
+  <label for="clave">Clave:</label>
+  <input id="clave" type="password" formControlName="clave" />
+  <div *ngIf="loginForm.get('clave')?.invalid && loginForm.get('clave')?.touched">
+    <p>Clave no válida</p>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+</form>
