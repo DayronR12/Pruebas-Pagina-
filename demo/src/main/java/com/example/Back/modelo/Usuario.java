@@ -1,4 +1,4 @@
-package com.example.Back.validations;
+package com.example.Back.modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -10,6 +10,26 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    @Column(unique = true)
+    private String usuario; // Cambia esto si la propiedad es diferente
+    private String clave; // Asegúrate de que esta propiedad esté bien definida
 
     @Column(length = 10, nullable = false, unique = true)
     @Pattern(regexp = "^[0-9]{10}$", message = "El NIT debe tener 10 dígitos y solo contener números")
@@ -43,12 +63,6 @@ public class Usuario {
     @Email(message = "El correo debe tener un formato válido")
     private String email;
 
-    @Column(length = 8, nullable = false, unique = true)
-    @Pattern(regexp = "^[A-Z][a-z]{6}[0-9]$", message = "El usuario debe tener la estructura indicada")
-    private String usuario;
-
-    @Column(nullable = false)
-    private String clave;
 
     // Getters y Setters
 
@@ -124,20 +138,5 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
 
 }
